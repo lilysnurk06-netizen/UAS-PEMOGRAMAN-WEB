@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Edukasi Akuntansi UMKM Desa</title>
+
+  <!-- ===== CSS DIGABUNG ===== -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f8;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #1e64c8;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+    }
+
+    header h1 {
+      margin-bottom: 5px;
+    }
+
+    nav ul {
+      list-style: none;
+      margin-top: 15px;
+    }
+
+    nav ul li {
+      display: inline-block;
+      margin: 0 10px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .card {
+      background-color: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .card h2 {
+      color: #1e64c8;
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+    }
+
+    textarea {
+      resize: none;
+      height: 80px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px;
+      width: 100%;
+      background-color: #1e64c8;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #154da1;
+    }
+
+    .hasil {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    footer {
+      background-color: #222;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+
+    @media (max-width: 600px) {
+      nav ul li {
+        display: block;
+        margin: 8px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Akuntansi UMKM Desa</h1>
+  <p>Edukasi Keuangan Sederhana untuk UMKM</p>
+  <nav>
+    <ul>
+      <li><a href="#beranda">Beranda</a></li>
+      <li><a href="#materi">Materi</a></li>
+      <li><a href="#layanan">Layanan</a></li>
+      <li><a href="#kontak">Kontak</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <section id="beranda" class="card">
+    <h2>Selamat Datang</h2>
+    <p>
+      Website ini membantu pelaku UMKM desa memahami
+      akuntansi dasar dan pencatatan keuangan usaha
+      secara mudah dan praktis.
+    </p>
+  </section>
+
+  <section id="materi" class="card">
+    <h2>Materi Akuntansi Dasar</h2>
+    <ol>
+      <li>Pengertian akuntansi</li>
+      <li>Pencatatan pemasukan dan pengeluaran</li>
+      <li>Perhitungan laba dan rugi</li>
+    </ol>
+  </section>
+
+  <section id="layanan" class="card">
+    <h2>Simulasi Laba Rugi UMKM</h2>
+
+    <label>Total Pemasukan (Rp)</label>
+    <input type="number" id="pemasukan" placeholder="Contoh: 500000">
+
+    <label>Total Pengeluaran (Rp)</label>
+    <input type="number" id="pengeluaran" placeholder="Contoh: 300000">
+
+    <button id="btnHitung">Hitung Laba Rugi</button>
+
+    <p id="hasil" class="hasil"></p>
+  </section>
+
+  <section id="kontak" class="card">
+    <h2>Kontak Kami</h2>
+
+    <form id="formKontak">
+      <input type="text" id="nama" placeholder="Nama Lengkap">
+      <input type="email" id="email" placeholder="Email">
+      <textarea id="pesan" placeholder="Pesan"></textarea>
+      <button type="submit">Kirim Pesan</button>
+    </form>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2026 Website Edukasi Akuntansi UMKM Desa</p>
+</footer>
+
+<!-- ===== JAVASCRIPT DIGABUNG ===== -->
+<script>
+  // Simulasi laba rugi
+  document.getElementById("btnHitung").addEventListener("click", function () {
+    const pemasukan = parseInt(document.getElementById("pemasukan").value) || 0;
+    const pengeluaran = parseInt(document.getElementById("pengeluaran").value) || 0;
+    const hasil = document.getElementById("hasil");
+
+    const laba = pemasukan - pengeluaran;
+
+    if (laba > 0) {
+      hasil.textContent = "Laba Usaha: Rp " + laba;
+    } else if (laba < 0) {
+      hasil.textContent = "Rugi Usaha: Rp " + laba;
+    } else {
+      hasil.textContent = "Usaha dalam kondisi impas";
+    }
+  });
+
+  // Validasi form kontak
+  document.getElementById("formKontak").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const nama = document.getElementById("nama").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const pesan = document.getElementById("pesan").value.trim();
+
+    if (nama === "" || email === "" || pesan === "") {
+      alert("Semua data wajib diisi!");
+    } else {
+      alert("Pesan berhasil dikirim. Terima kasih!");
+      this.reset();
+    }
+  });
+</script>
+
+</body>
+</html>
